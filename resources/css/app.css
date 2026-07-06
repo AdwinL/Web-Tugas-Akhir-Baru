@@ -1,0 +1,34 @@
+@import "../js/framer/tokens.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    color-scheme: light;
+    --brand-ink: #073842;
+    --brand-moss: #315A5F;
+    --brand-coral: #E86F45;
+    --brand-sand: #F8E8D8;
+    --brand-cream: #FFF9F1;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, rgba(248, 232, 216, 0.95) 0%, rgba(255, 249, 241, 1) 48%, rgba(255, 255, 255, 1) 100%);
+    color: var(--brand-ink);
+}
+
+h1, h2, h3, .font-display {
+    font-family: 'Cormorant', serif;
+}
+
+.hero-glow {
+    background:
+        radial-gradient(circle at top left, rgba(232, 111, 69, 0.28), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(49, 90, 95, 0.16), transparent 28%);
+}
+
+.card-surface {
+    @apply rounded-[2rem] border border-slate-200/80 bg-white/80 shadow-[0_24px_80px_-26px_rgba(7,56,66,0.25)] backdrop-blur;
+}

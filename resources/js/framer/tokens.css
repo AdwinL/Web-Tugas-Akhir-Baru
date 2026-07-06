@@ -1,0 +1,36 @@
+/**
+ * Project design tokens extracted from the Framer canvas.
+ * Import this file once at the root of your app so the
+ * --token-<uuid> CSS variables referenced by exported components resolve.
+ */
+/* Fallback @imports for families not covered by @font-face above. */
+/* These rely on Google Fonts publishing the family under the exact name; */
+/* will silently 404 for custom or non-Google fonts. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+
+.text-style-OEyJrhaWc {
+  font-family: 'Cormorant', sans-serif;
+  font-size: 82px;
+  line-height: 0.92em;
+  color: #073842;
+}
+.text-style-X3UcLMrZl {
+  font-family: 'Cormorant', sans-serif;
+  font-size: 48px;
+  line-height: 1em;
+  color: #073842;
+}
+.text-style-lExIqFkmw {
+  font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  line-height: 1.55em;
+  color: #315A5F;
+}
+.text-style-vZvunf8oM {
+  font-family: 'Nunito', sans-serif;
+  font-size: 12px;
+  line-height: 1em;
+  color: #E86F45;
+}

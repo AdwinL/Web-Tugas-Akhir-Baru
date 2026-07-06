@@ -1,0 +1,74 @@
+{
+  "name": "Sun",
+  "version": "1.0.0",
+  "description": "Exported Framer components: Q3ukJyjo, Hlgmh5xpi, T8fy7rg57, Ogjenw4bb, Qcetymkys, T8fy7rg572, Gkhxp7jno, Q3ukJyjo2, Rs, Hlgmh5xpi2, Rs2, St4fztt4",
+  "type": "module",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./Q3ukJyjo": {
+      "import": "./Q3ukJyjo.js",
+      "types": "./Q3ukJyjo.d.ts"
+    },
+    "./Hlgmh5xpi": {
+      "import": "./Hlgmh5xpi.js",
+      "types": "./Hlgmh5xpi.d.ts"
+    },
+    "./T8fy7rg57": {
+      "import": "./T8fy7rg57.js",
+      "types": "./T8fy7rg57.d.ts"
+    },
+    "./Ogjenw4bb": {
+      "import": "./Ogjenw4bb.js",
+      "types": "./Ogjenw4bb.d.ts"
+    },
+    "./Qcetymkys": {
+      "import": "./Qcetymkys.js",
+      "types": "./Qcetymkys.d.ts"
+    },
+    "./T8fy7rg572": {
+      "import": "./T8fy7rg572.js",
+      "types": "./T8fy7rg572.d.ts"
+    },
+    "./Gkhxp7jno": {
+      "import": "./Gkhxp7jno.js",
+      "types": "./Gkhxp7jno.d.ts"
+    },
+    "./Q3ukJyjo2": {
+      "import": "./Q3ukJyjo2.js",
+      "types": "./Q3ukJyjo2.d.ts"
+    },
+    "./Rs": {
+      "import": "./Rs.js",
+      "types": "./Rs.d.ts"
+    },
+    "./Hlgmh5xpi2": {
+      "import": "./Hlgmh5xpi2.js",
+      "types": "./Hlgmh5xpi2.d.ts"
+    },
+    "./Rs2": {
+      "import": "./Rs2.js",
+      "types": "./Rs2.d.ts"
+    },
+    "./St4fztt4": {
+      "import": "./St4fztt4.js",
+      "types": "./St4fztt4.d.ts"
+    }
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "framer-motion": ">=10.0.0"
+  },
+  "keywords": [
+    "framer",
+    "react",
+    "components",
+    "exported"
+  ],
+  "license": "MIT"
+}
