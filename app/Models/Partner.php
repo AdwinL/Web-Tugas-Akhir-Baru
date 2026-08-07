@@ -9,6 +9,10 @@ class Partner extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Partner` untuk menyimpan mitra/partner (logo, website).
+     */
+
     protected $fillable = [
         'name',
         'logo_path',

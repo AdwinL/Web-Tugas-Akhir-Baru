@@ -9,6 +9,10 @@ class Announcement extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Announcement` untuk menyimpan pengumuman singkat di situs.
+     */
+
     protected $fillable = [
         'title',
         'content',

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    {{-- HERO: bagian pembuka dengan CTA Reserve dan Explore menu --}}
     <section class="relative overflow-hidden">
         <div class="hero-glow absolute inset-0"></div>
         <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
@@ -40,10 +41,12 @@
         </div>
     </section>
 
+    {{-- Framer showcase: area kosong yang akan di-mount React showcase dari resources/js/app.js --}}
     <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div id="framer-showcase"></div>
     </section>
 
+    {{-- Announcements: jika ada pengumuman aktif, tampilkan dalam kartu --}}
     @if($announcements->isNotEmpty())
         <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <div class="card-surface p-6">
@@ -70,6 +73,7 @@
         </section>
     @endif
 
+    {{-- Signature dishes: contoh item menu unggulan --}}
     <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div class="card-surface p-8">
             <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
@@ -96,6 +100,7 @@
         </div>
     </section>
 
+    {{-- Featured events: ringkasan event-event unggulan --}}
     <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div>
@@ -116,6 +121,7 @@
         </div>
     </section>
 
+    {{-- Seksi reservasi: menampilkan form reservasi dari partial --}}
     <section class="bg-[#073842] text-white">
         <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
             <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
@@ -131,6 +137,7 @@
         </div>
     </section>
 
+    {{-- Testimonial, latest news, dan partners --}}
     <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div class="grid gap-10 xl:grid-cols-[1.7fr_0.8fr_0.8fr]">
             <div class="card-surface p-6 sm:p-8">

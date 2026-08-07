@@ -9,6 +9,11 @@ class Promo extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Promo` menyimpan data promosi/kode diskon.
+     * Penjelasan singkat (Indonesia): title, code, discount_percent, periode aktif.
+     */
+
     protected $fillable = [
         'title',
         'slug',

@@ -9,6 +9,10 @@ class Gallery extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Gallery` menyimpan foto dan caption untuk galeri.
+     */
+
     protected $fillable = [
         'caption',
         'image_path',

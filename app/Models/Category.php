@@ -9,6 +9,10 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Category` mengelompokkan item seperti menu atau event.
+     */
+
     protected $fillable = [
         'name',
         'slug',

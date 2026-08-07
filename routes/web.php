@@ -1,4 +1,9 @@
 <?php
+// File `routes/web.php`
+// Penjelasan (Indonesia):
+// - Mendefinisikan semua route web publik dan admin.
+// - Route publik (home, menu, events, blog, contact, dll.) dideklarasikan di bawah.
+// - Group admin dilindungi oleh middleware `auth` dan `EnsureAdmin`.
 
 use App\Http\Controllers\Admin\AnnouncementController as AdminAnnouncementController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;

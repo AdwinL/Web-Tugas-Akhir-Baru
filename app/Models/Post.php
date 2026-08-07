@@ -9,6 +9,11 @@ class Post extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Post` untuk menyimpan artikel/blog post.
+     * Penjelasan singkat (Indonesia): title, slug, excerpt, content, author, dll.
+     */
+
     protected $fillable = [
         'title',
         'slug',

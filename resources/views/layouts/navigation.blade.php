@@ -1,3 +1,4 @@
+{{-- Navigasi utama: logo, link ke halaman publik, dan tombol login/dashboard --}}
 <nav class="sticky top-0 z-50 border-b border-[#073842]/10 bg-white/80 backdrop-blur-xl">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="flex h-16 items-center justify-between">
@@ -20,6 +21,7 @@
                 <a href="{{ route('career.index') }}" class="rounded-full px-3 py-2 transition hover:bg-[#073842]/5 hover:text-[#E86F45]">Career</a>
             </div>
             <div class="flex items-center gap-3">
+                {{-- Tampilkan tombol Dashboard jika ter-autentikasi, jika tidak tampilkan Login --}}
                 @auth
                     <a href="{{ route('admin.dashboard') }}" class="rounded-full bg-[#E86F45] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#d85e33]">Dashboard</a>
                 @else

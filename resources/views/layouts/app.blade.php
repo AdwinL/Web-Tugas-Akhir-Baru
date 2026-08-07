@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        {{-- Judul dan meta deskripsi situs --}}
         <title>{{ config('app.name', 'Surya Lagoon') }}</title>
         <meta name="description" content="Surya Lagoon Restaurant & Event Booking website.">
 
@@ -15,8 +16,10 @@
     </head>
     <body class="min-h-screen antialiased">
         <div class="min-h-screen bg-transparent">
+            {{-- Navigasi utama situs --}}
             @include('layouts.navigation')
 
+            {{-- Konten utama; bisa menerima slot (komponen) atau section content --}}
             <main class="min-h-[calc(100vh-5rem)]">
                 @isset($slot)
                     {{ $slot }}
@@ -25,6 +28,7 @@
                 @endisset
             </main>
 
+            {{-- Footer sederhana --}}
             <footer class="border-t border-[#073842]/10 bg-[#073842]/5 text-[#315A5F]">
                 <div class="mx-auto max-w-7xl px-4 py-10 text-center">
                     <p class="text-sm">&copy; {{ date('Y') }} Surya Lagoon. All rights reserved.</p>

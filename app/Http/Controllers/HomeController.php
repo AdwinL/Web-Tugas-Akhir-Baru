@@ -19,15 +19,26 @@ class HomeController extends Controller
 {
     public function index()
     {
+        // Menyiapkan data untuk halaman depan (home)
+        // Penjelasan: tiap elemen di bawah ini akan tersedia pada view `home` sebagai variabel.
         return view('home', [
+            // pengumuman aktif
             'announcements' => Announcement::active()->get(),
+            // kategori menu beserta relasi menu
             'menuCategories' => Category::where('type', 'menu')->with('menus')->get(),
+            // event yang aktif dan ditandai featured (maks 4)
             'featuredEvents' => Event::where('is_active', true)->where('is_featured', true)->take(4)->get(),
+            // promo aktif (maks 3)
             'promos' => Promo::active()->take(3)->get(),
+            // testimonial diambil dari Google Places atau fallback statis
             'testimonials' => $this->fetchGoogleTestimonials(),
+            // artikel/blog terbaru
             'blogPosts' => Post::active()->latest('published_at')->take(3)->get(),
+            // daftar partner aktif
             'partners' => Partner::where('is_active', true)->get(),
+            // kontak bisnis (ambil record pertama)
             'contact' => Contact::first(),
+            // FAQ singkat
             'faqItems' => Faq::active()->take(5)->get(),
         ]);
     }
@@ -48,6 +59,7 @@ class HomeController extends Controller
         $apiKey = config('services.google_places.api_key');
         $placeId = config('services.google_places.place_id');
 
+        // Jika konfigurasi API belum diisi, kembalikan daftar testimonial fallback
         if (!$apiKey || !$placeId) {
             return [
                 ['name' => 'Dina Pratama', 'comment' => 'Surya Lagoon membuat acara keluarga kami sangat mengesankan!', 'rating' => 5, 'photo' => null, 'relative_time' => '2 weeks ago'],
@@ -58,6 +70,7 @@ class HomeController extends Controller
 
         $cacheKey = "google_reviews_{$placeId}";
 
+        // Gunakan cache untuk mengurangi panggilan ke Google API (cache 1 jam)
         return Cache::remember($cacheKey, 3600, function () use ($apiKey, $placeId) {
             try {
                 $response = Http::timeout(5)->get('https://maps.googleapis.com/maps/api/place/details/json', [
@@ -67,6 +80,7 @@ class HomeController extends Controller
                     'language' => 'en'
                 ]);
 
+                // Jika respons tidak OK, log dan kembalikan fallback
                 if (!$response->ok()) {
                     Log::warning('Google Places API request failed', ['status' => $response->status(), 'body' => $response->body()]);
                     return [
@@ -78,6 +92,7 @@ class HomeController extends Controller
 
                 $reviews = $response->json('result.reviews', []);
 
+                // Jika tidak ada review, kembalikan fallback
                 if (!is_array($reviews) || empty($reviews)) {
                     return [
                         ['name' => 'Dina Pratama', 'comment' => 'Surya Lagoon membuat acara keluarga kami sangat mengesankan!', 'rating' => 5, 'photo' => null, 'relative_time' => '2 weeks ago'],
@@ -86,6 +101,7 @@ class HomeController extends Controller
                     ];
                 }
 
+                // Ambil maksimal 3 review, ubah struktur data agar konsisten untuk view
                 return collect($reviews)
                     ->take(3)
                     ->map(function ($review) {
@@ -100,6 +116,7 @@ class HomeController extends Controller
                     })
                     ->toArray();
             } catch (\Exception $e) {
+                // Jika terjadi error saat memanggil API, log error dan kembalikan fallback
                 Log::error('Error fetching Google reviews: ' . $e->getMessage());
                 return [
                     ['name' => 'Dina Pratama', 'comment' => 'Surya Lagoon membuat acara keluarga kami sangat mengesankan!', 'rating' => 5, 'photo' => null, 'relative_time' => '2 weeks ago'],

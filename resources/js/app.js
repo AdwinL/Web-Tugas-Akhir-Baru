@@ -1,3 +1,8 @@
+// resources/js/app.js
+// Penjelasan (Indonesia):
+// - File entry point JavaScript untuk inisialisasi Alpine.js dan mounting komponen React kecil
+// - Mengimpor komponen hasil ekspor Framer untuk ditampilkan di halaman depan
+
 import './bootstrap';
 
 import Alpine from 'alpinejs';
@@ -24,6 +29,7 @@ import './framer/_responsive-runtime.css';
 window.Alpine = Alpine;
 Alpine.start();
 
+// daftar komponen Framer yang akan ditampilkan di showcase
 const showcaseItems = [
     { component: Q3ukJyjo, label: 'Scenic Dining' },
     { component: Hlgmh5xpi, label: 'Signature Nights' },
@@ -39,6 +45,7 @@ const showcaseItems = [
     { component: St4fztt4, label: 'Fine Details' },
 ];
 
+// Komponen React kecil yang merender grid showcase Framer
 function FramerShowcase() {
     return React.createElement(
         'section',

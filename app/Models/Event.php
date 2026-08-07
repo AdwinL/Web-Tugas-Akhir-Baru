@@ -9,6 +9,12 @@ class Event extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Event` untuk menyimpan data event/acara.
+     * Penjelasan singkat (Indonesia): menyimpan judul, deskripsi, waktu mulai/akhir,
+     * apakah featured/active, dan relasi kategori.
+     */
+
     protected $fillable = [
         'category_id',
         'title',

@@ -12,6 +12,8 @@ class ReservationController extends Controller
 {
     public function store(Request $request)
     {
+        // Validasi input dari form reservasi
+        // Penjelasan: aturan memastikan data wajib terpenuhi dan format valid
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:32',
@@ -24,6 +26,7 @@ class ReservationController extends Controller
             'whatsapp_opt_in' => 'sometimes|boolean',
         ]);
 
+        // Cek konflik waktu: jika ada reservasi pending/approved dalam jangka +/-2 jam
         $requestedTime = Carbon::parse($validated['time']);
 
         $conflict = Reservation::where('date', $validated['date'])
@@ -34,28 +37,34 @@ class ReservationController extends Controller
             ])
             ->exists();
 
+        // Jika bentrok, cari alternatif waktu dan kembalikan ke form dengan pesan
         if ($conflict) {
             $alternativeTime = $this->findAlternative($validated['date'], $requestedTime);
 
             return back()->withInput()->with([
-                'error' => 'The selected slot is unavailable. Please choose another time.',
+                'error' => 'Waktu yang dipilih tidak tersedia. Silakan pilih waktu lain.',
                 'alternative' => $alternativeTime,
             ]);
         }
 
+        // Siapkan data sebelum disimpan
         $validated['status'] = 'pending';
         $validated['whatsapp_opt_in'] = $request->boolean('whatsapp_opt_in');
         $validated['event_size'] = $this->eventSizeLabel($validated['guest_count']);
 
+        // Simpan reservasi ke database
         $reservation = Reservation::create($validated);
 
+        // Kirim email konfirmasi (opsional, pastikan mail disetup)
         Mail::to($reservation->email)->send(new ReservationConfirmation($reservation));
 
-        return back()->with('success', 'Thank you! Your reservation request has been received. We will confirm it shortly.');
+        // Kembalikan respon sukses ke pengguna
+        return back()->with('success', 'Terima kasih! Permintaan reservasi Anda telah diterima. Kami akan mengonfirmasi segera.');
     }
 
     private function eventSizeLabel(int $guestCount): string
     {
+        // Label sederhana untuk ukuran acara berdasar jumlah tamu
         if ($guestCount <= 40) {
             return 'small';
         }
@@ -69,6 +78,7 @@ class ReservationController extends Controller
 
     private function findAlternative(string $date, Carbon $time): ?string
     {
+        // Coba cari alternatif dalam 1..4 jam berikutnya
         for ($hours = 1; $hours <= 4; $hours++) {
             $candidate = $time->copy()->addHours($hours);
             $exists = Reservation::where('date', $date)
@@ -84,6 +94,7 @@ class ReservationController extends Controller
             }
         }
 
+        // Tidak menemukan alternatif
         return null;
     }
 }

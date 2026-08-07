@@ -9,6 +9,10 @@ class Faq extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Faq` untuk menyimpan pertanyaan & jawaban (FAQ).
+     */
+
     protected $fillable = [
         'question',
         'answer',

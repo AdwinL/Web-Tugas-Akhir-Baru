@@ -14,11 +14,21 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
+     * Model `User` untuk menyimpan data pengguna.
+     *
+     * Penjelasan singkat (Indonesia):
+     * - `$fillable`: atribut yang dapat diisi massal.
+     * - `$hidden`: atribut yang disembunyikan saat serialisasi (mis. JSON).
+     * - `$casts`: konversi tipe otomatis untuk atribut tertentu.
+     */
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
     protected $fillable = [
+        // kolom yang boleh diisi langsung melalui mass assignment
         'name',
         'email',
         'password',
@@ -32,6 +42,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $hidden = [
+        // atribut yang tidak ingin ditampilkan di respon API
         'password',
         'remember_token',
     ];
@@ -42,6 +53,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
+        // cast otomatis untuk mempermudah penggunaan
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
         'is_admin' => 'boolean',

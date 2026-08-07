@@ -9,6 +9,14 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    /**
+     * Model `Reservation` untuk menyimpan data reservasi.
+     *
+     * Penjelasan singkat (Indonesia):
+     * - `$fillable`: daftar field yang boleh diisi massal (mass assignment).
+     * - `$casts`: konversi tipe otomatis untuk atribut tertentu.
+     */
+
     protected $fillable = [
         'name',
         'phone',
