@@ -12,15 +12,19 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // Registration is disabled by default for this project.
+    // If you want to allow public registration, restore the routes below.
+    // Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    // Route::post('register', [RegisteredUserController::class, 'store']);
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
-
-    Route::get('login', [AuthenticatedSessionController::class, 'create'])
+    // Admin login URL moved to /admin/login to avoid exposing the login page at /login.
+    // We keep the route name `login` so Laravel's auth middleware redirects still work.
+    Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])
+        ->middleware('admin.secret')
         ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('admin/login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware(['admin.secret', 'throttle:5,1']);
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
