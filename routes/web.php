@@ -52,7 +52,7 @@ Route::middleware(['auth'])->get('/dashboard', function () {
 
 // (Pages feature removed)
 
-Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'admin.secret'])->prefix('admin')->name('admin.')->group(function () {
     Route::middleware([EnsureAdmin::class])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('menus', AdminMenuController::class);

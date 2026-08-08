@@ -25,7 +25,7 @@
                 @auth
                     <a href="{{ route('admin.dashboard') }}" class="rounded-full bg-[#E86F45] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#d85e33]">Dashboard</a>
                 @else
-                    <a href="{{ route('login') }}" class="rounded-full border border-[#073842]/10 px-4 py-2 text-sm font-semibold text-[#073842] transition hover:bg-[#073842]/5">Login</a>
+                    {{-- Login link intentionally hidden from public to keep admin access private --}}
                 @endauth
             </div>
         </div>
