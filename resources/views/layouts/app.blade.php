@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{-- Judul dan meta deskripsi situs --}}
-        <title>{{ config('app.name', 'Surya Lagoon') }}</title>
+        <title>Surya Lagoon</title>
         <meta name="description" content="Surya Lagoon Restaurant & Event Booking website.">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
